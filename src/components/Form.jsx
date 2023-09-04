@@ -86,7 +86,7 @@ const Form = ({ setSuccess, setEmail }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="lg:grid flex lg:grid-cols-2 flex-col-reverse lg:gap-8 gap-5 bg-white lg:shadow-xl lg:max-w-[750px] max-w-[370px] lg:pl-10 pl-0 lg:pr-5 pr-0 lg:py-8 py-0 lg:rounded-[30px] rounded-none"
+      className="lg:grid flex lg:grid-cols-2 flex-col-reverse lg:gap-8 gap-5 bg-white lg:shadow-xl lg:max-w-[750px] max-w-[450px] lg:pl-10 pl-0 lg:pr-5 pr-0 lg:py-8 py-0 lg:rounded-[30px] rounded-none"
     >
       <div className="lg:p-0 px-6 pb-10 flex flex-col gap-5 justify-center">
         <h1 className="text-dark-slate-gray font-semibold lg:text-5xl text-3xl">
