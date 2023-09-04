@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Form, Success } from "./components";
 
 const App = () => {
+  // Can use Zustand
   const [success, setSuccess] = useState(false);
   const [email, setEmail] = useState("");
 
