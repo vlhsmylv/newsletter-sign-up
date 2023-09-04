@@ -52,6 +52,6 @@ body {
 }
 
 .hover-gradient:hover {
-  background-color: var(--gradient);
+  background: var(--gradient);
   box-shadow: 0px 10px 28px -5px var(--gradient);
 }
