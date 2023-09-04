@@ -113,7 +113,7 @@ const Form = ({ setSuccess, setEmail }) => {
         />
         <img
           src={illustrationMobile}
-          className="lg:hidden block rounded-none"
+          className="w-full lg:hidden block rounded-none"
           alt="Illustration"
         />
       </div>
