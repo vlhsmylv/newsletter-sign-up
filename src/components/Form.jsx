@@ -5,14 +5,17 @@ import validator from "validator";
 const emailValidation = (str) => {
   if (!validator.isEmail(str)) {
     return "Valid email required";
+  } else if (str.length === 0) {
+    return "Valid email required";
   } else {
     return "";
   }
 };
 
-const EmailSubmission = () => {
+// eslint-disable-next-line react/prop-types
+const Form = ({ setSuccess, setEmail }) => {
   const [error, setError] = useState("");
-  const [email, setEmail] = useState("");
+  const [email, setLocalEmail] = useState("");
 
   const handleChange = (e) => {
     if (emailValidation(e.target.value).length !== 0) {
@@ -20,60 +23,17 @@ const EmailSubmission = () => {
     } else {
       setError("");
     }
-    setEmail(e.target.value);
+    setLocalEmail(e.target.value);
   };
 
-  return (
-    <section className="flex flex-col gap-5">
-      <div className="flex flex-col gap-3">
-        <div className="flex justify-between">
-          <label
-            htmlFor="email"
-            className="text-dark-slate-gray lg:text-[13px] text-[11px] font-semibold"
-          >
-            Email address
-          </label>
-          {error.length !== 0 ? (
-            <p className="text-[13px] font-semibold text-tomato text-right">
-              {error}
-            </p>
-          ) : (
-            <></>
-          )}
-        </div>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          value={email}
-          className={`outline-none ${
-            error.length !== 0
-              ? "focus:border-tomato bg-tomato-alpha placeholder-tomato text-tomato"
-              : "focus:border-black"
-          } text-black border-gray-300 border lg:text-base text-[13px] p-3 rounded-[7px]`}
-          autoComplete="off"
-          placeholder="email@company.com"
-          onChange={handleChange}
-        />
-      </div>
-      <button
-        className="lg:text-base text-[13px] hover-gradient bg-dark-slate-gray p-3 rounded-[7px] outline-none border-none text-white"
-        type="submit"
-      >
-        Subscribe to monthly newsletter
-      </button>
-    </section>
-  );
-};
-
-// eslint-disable-next-line react/prop-types
-const Form = ({ setSuccess, setEmail }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     if (emailValidation(email).length === 0) {
       setSuccess(true);
       setEmail(email);
+    } else {
+      setError(emailValidation(email));
     }
   };
 
@@ -97,13 +57,54 @@ const Form = ({ setSuccess, setEmail }) => {
         </p>
         <ul className="flex flex-col gap-3">
           {list.map((el, i) => (
-            <li key={i} className="flex gap-2 items-center lg:text-sm text-[13px]">
+            <li
+              key={i}
+              className="flex gap-2 items-center lg:text-sm text-[13px]"
+            >
               <img className="w-5" src={successList} alt="success" />
               <p>{el}</p>
             </li>
           ))}
         </ul>
-        <EmailSubmission />
+        <section className="flex flex-col gap-5">
+          <div className="flex flex-col gap-3">
+            <div className="flex justify-between">
+              <label
+                htmlFor="email"
+                className="text-dark-slate-gray lg:text-[13px] text-[11px] font-semibold"
+              >
+                Email address
+              </label>
+              {error.length !== 0 ? (
+                <p className="text-[13px] font-semibold text-tomato text-right">
+                  {error}
+                </p>
+              ) : (
+                <></>
+              )}
+            </div>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              value={email}
+              className={`outline-none ${
+                error.length !== 0
+                  ? "focus:border-tomato bg-tomato-alpha placeholder-tomato text-tomato"
+                  : "focus:border-black"
+              } text-black border-gray-300 border lg:text-base text-[13px] p-3 rounded-[7px]`}
+              autoComplete="off"
+              placeholder="email@company.com"
+              onChange={handleChange}
+            />
+          </div>
+          <button
+            className="lg:text-base text-[13px] hover-gradient bg-dark-slate-gray p-3 rounded-[7px] outline-none border-none text-white"
+            type="submit"
+          >
+            Subscribe to monthly newsletter
+          </button>
+        </section>
       </div>
       <div>
         <img
